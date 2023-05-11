@@ -1,15 +1,14 @@
+import "../styles/tile.scss";
+import bP from "../assets/bP.png";
+
 interface Props {
-  i: number;
-  j: number;
-  ranks: number[];
-  files: string[];
+  number: number;
 }
 
-const Tile = ({ i, j, files, ranks }: Props) => {
+const Tile = ({ number }: Props) => {
   return (
-    <div className={(i + j) % 2 ? "square dark" : "square light"}>
-      <span className="ranks"></span>
-      <span className="files"></span>
+    <div className={number % 2 ? "square dark" : "square light"}>
+      <img src={bP} alt="chess piece" />
     </div>
   );
 };

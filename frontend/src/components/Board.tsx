@@ -104,7 +104,8 @@ const Chessboard = ({ ranks, files }: Props) => {
   let board = [];
   for (let j = 0; j < ranks.length; j++) {
     for (let i = 0; i < files.length; i++) {
-      board.push(<Tile j={j} i={i} ranks={ranks} files={files} />);
+      const number = i + j;
+      board.push(<Tile number={number} />);
     }
   }
   return (
