@@ -1,6 +1,6 @@
 import "../styles/board.scss";
 
-const Board = () => {
+const Chessboard = () => {
   const pieces = {
     empty: 0,
     wP: 1,
@@ -85,7 +85,7 @@ const Board = () => {
     }
 
     //loops through files and ranks, get board square, set filesBoard and ranksBoard to appropriate value
-    for (let rank = ranks.r1; rank <= ranks.r8; rank++) {
+    for (let rank = 0; rank <= ranks.r8; rank++) {
       for (let file = files.fA; file <= files.fH; file++) {
         sq = fileRankToSquare(file, rank);
         filesBoard[sq] = file;
@@ -100,7 +100,14 @@ const Board = () => {
     console.log("filesBoard[squares.E8]", filesBoard[squares.E8]);
     console.log("ranksBoard[squares.E8]", ranksBoard[squares.E8]);
   };
-  initFilesRanksBoard();
+  // initFilesRanksBoard();
+
+  let board = [];
+  for (let rank = ranks.r1; rank <= ranks.r8; rank++) {
+    for (let file = files.fA; file <= files.fH; file++) {
+      board.push(<span></span>);
+    }
+  }
   return (
     <div className="board">
       <h1>ChessDevs</h1>
@@ -111,7 +118,8 @@ const Board = () => {
           Set Position
         </button>
       </div>
-      <ul>
+
+      {/* <ul>
         <li className="square light"></li>
         <li className="square dark"></li>
         <li className="square light"></li>
@@ -183,8 +191,8 @@ const Board = () => {
         <li className="square light"></li>
         <li className="square dark"></li>
         <li className="square light"></li>
-      </ul>
+      </ul> */}
     </div>
   );
 };
-export default Board;
+export default Chessboard;

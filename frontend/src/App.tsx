@@ -1,9 +1,9 @@
-import Board from "./components/Board";
+import Chessboard from "./components/Board";
 
 function App() {
   return (
     <div className="App">
-      <Board />
+      <Chessboard />
     </div>
   );
 }
