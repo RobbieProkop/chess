@@ -1,0 +1,27 @@
+.board {
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  ul {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 0;
+  }
+
+  .square {
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+  }
+  .dark {
+    background: #7b3e26;
+  }
+
+  .light {
+    background: #ffe7d5;
+  }
+}
