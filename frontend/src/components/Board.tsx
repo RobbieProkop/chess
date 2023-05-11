@@ -103,19 +103,24 @@ const Chessboard = ({ ranks, files }: Props) => {
   let board = [];
   for (let i = 0; i <= files.length; i++) {
     for (let j = 0; j <= ranks.length; j++) {
-      board.push(<span></span>);
+      board.push(
+        <span>
+          {ranks[j]}
+          {files[i]}
+        </span>
+      );
     }
   }
   return (
-    <div className="board">
-      <h1>ChessDevs</h1>
+    <div className="board-container">
+      <div className="chessboard">{board}</div>
 
-      <div className="form-group">
+      {/* <div className="form-group">
         <input type="text" id="fenIn" />
         <button type="button" id="setFen">
           Set Position
         </button>
-      </div>
+      </div> */}
 
       {/* <ul>
         <li className="square light"></li>
