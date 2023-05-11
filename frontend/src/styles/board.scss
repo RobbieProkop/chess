@@ -1,8 +1,15 @@
-.board-container {
+.chessboard {
   height: 800px;
   width: 800px;
   margin: auto;
   background-color: #7b3e26;
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    height: 100px;
+    width: 100px;
+  }
+
   // .form-group {
   //   margin-bottom: 2rem;
   //   width: 100%;
@@ -44,10 +51,17 @@
   .square {
     height: 100px;
     width: 100px;
-    border: 1px solid black;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .ranks {
+      align-self: flex-start;
+    }
   }
   .dark {
     background: #7b3e26;
+    color: #fff;
   }
 
   .light {

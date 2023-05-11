@@ -101,101 +101,16 @@ const Chessboard = ({ ranks, files }: Props) => {
   // // initFilesRanksBoard();
 
   let board = [];
-  for (let i = 0; i <= files.length; i++) {
-    for (let j = 0; j <= ranks.length; j++) {
+  for (let j = 0; j < ranks.length; j++) {
+    for (let i = 0; i < files.length; i++) {
       board.push(
-        <span>
-          {ranks[j]}
-          {files[i]}
-        </span>
+        <div className={(i + j) % 2 ? "square dark" : "square light"}>
+          <span className="ranks">{files[i] === "a" && ranks[j]}</span>
+          <span className="files">{ranks[j] === 8 && files[i]}</span>
+        </div>
       );
     }
   }
-  return (
-    <div className="board-container">
-      <div className="chessboard">{board}</div>
-
-      {/* <div className="form-group">
-        <input type="text" id="fenIn" />
-        <button type="button" id="setFen">
-          Set Position
-        </button>
-      </div> */}
-
-      {/* <ul>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-        <li className="square dark"></li>
-        <li className="square light"></li>
-      </ul> */}
-    </div>
-  );
+  return <div className="chessboard">{board}</div>;
 };
 export default Chessboard;
