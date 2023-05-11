@@ -2,13 +2,14 @@ import "../styles/tile.scss";
 
 interface Props {
   number: number;
-  piece?: string;
+  image?: string;
+  pieceName?: string;
 }
 
-const Tile = ({ number, piece }: Props) => {
+const Tile = ({ number, image, pieceName }: Props) => {
   return (
     <div className={number % 2 ? "square dark" : "square light"}>
-      <img src={piece} alt="chess piece" />
+      {image && <img src={image} alt={pieceName} />}
     </div>
   );
 };
