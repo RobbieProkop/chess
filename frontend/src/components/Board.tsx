@@ -92,9 +92,25 @@ const Board = () => {
         ranksBoard[sq] = rank;
       }
     }
+
+    console.log("filesBoard[0]", filesBoard[0]);
+    console.log("ranksBoard[0]", ranksBoard[0]);
+    console.log("filesBoard[squares.A1]", filesBoard[squares.A1]);
+    console.log("ranksBoard[squares.A1]", ranksBoard[squares.A1]);
+    console.log("filesBoard[squares.E8]", filesBoard[squares.E8]);
+    console.log("ranksBoard[squares.E8]", ranksBoard[squares.E8]);
   };
+  initFilesRanksBoard();
   return (
     <div className="board">
+      <h1>ChessDevs</h1>
+
+      <div className="form-group">
+        <input type="text" id="fenIn" />
+        <button type="button" id="setFen">
+          Set Position
+        </button>
+      </div>
       <ul>
         <li className="square light"></li>
         <li className="square dark"></li>
