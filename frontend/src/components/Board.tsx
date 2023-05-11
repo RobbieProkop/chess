@@ -1,4 +1,5 @@
 import "../styles/board.scss";
+import Tile from "./Tile";
 
 type Props = {
   files: string[];
@@ -103,14 +104,25 @@ const Chessboard = ({ ranks, files }: Props) => {
   let board = [];
   for (let j = 0; j < ranks.length; j++) {
     for (let i = 0; i < files.length; i++) {
-      board.push(
-        <div className={(i + j) % 2 ? "square dark" : "square light"}>
-          <span className="ranks">{files[i] === "a" && ranks[j]}</span>
-          <span className="files">{ranks[j] === 8 && files[i]}</span>
-        </div>
-      );
+      board.push(<Tile j={j} i={i} ranks={ranks} files={files} />);
     }
   }
-  return <div className="chessboard">{board}</div>;
+  return (
+    <div className="board-container">
+      <div className="ranks">
+        {ranks.map((rank) => {
+          return <span className="rank">{rank}</span>;
+        })}
+      </div>
+      <div className="chessboard">
+        {board}
+        <div className="files">
+          {files.map((file) => {
+            return <span className="file">{file}</span>;
+          })}
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Chessboard;
