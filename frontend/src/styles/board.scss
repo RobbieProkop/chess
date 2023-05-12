@@ -22,22 +22,20 @@
   .chessboard {
     height: 800px;
     width: 800px;
-    // margin: 0 auto;
-    background-color: #7b3e26;
     display: flex;
     flex-wrap: wrap;
-    .files {
-      display: flex;
-      flex-direction: row;
+  }
+  .files {
+    display: flex;
+    flex-direction: row;
 
-      &.reverse {
-        flex-direction: row-reverse;
-      }
-      .file {
-        width: 100px;
-        text-align: center;
-        margin-top: 5px;
-      }
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+    .file {
+      width: 100px;
+      text-align: center;
+      margin-top: 5px;
     }
 
     // .form-group {

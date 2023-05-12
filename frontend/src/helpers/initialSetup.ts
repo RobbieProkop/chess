@@ -13,14 +13,15 @@ const initialSetup = () => {
     .map(() => Array(8).fill(null));
 
   const colours = ["b", "w"];
+  //don't spell knight with a K, it makes the program think the piece is a king
   const names = [
     "Rook",
-    "Knight",
+    "Night",
     "Bishop",
     "Queen",
     "King",
     "Bishop",
-    "Knight",
+    "Night",
     "Rook",
   ];
 

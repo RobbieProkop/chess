@@ -15,7 +15,6 @@ const Tile = ({ number, image, pieceName }: Props) => {
           style={{ background: `url(${image}) no-repeat center/cover` }}
         ></div>
       )}
-      {/* {image && <img src={image} alt={pieceName} className="piece" />} */}
     </div>
   );
 };
