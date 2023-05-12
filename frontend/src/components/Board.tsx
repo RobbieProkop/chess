@@ -1,43 +1,16 @@
 import { useState } from "react";
 import "../styles/board.scss";
 import Tile from "./Tile";
+import initialSetup from "../helpers/initialSetup";
 
 type Props = {
   files: string[];
   ranks: string[];
 };
-interface Piece {
-  image: string;
-  name: string;
-  x: number;
-  y: number;
-}
 
 const Chessboard = ({ ranks, files }: Props) => {
   const [boardSide, setBoardSide] = useState(false);
-
-  //setting the initial pieces
-  const pieces: Piece[] = [];
-
-  // black pawns
-  for (let i = 0; i < 8; i++) {
-    pieces.push({
-      image: "assets/bP.png",
-      name: "black pawn",
-      y: 6,
-      x: i,
-    });
-  }
-
-  //white pawns
-  for (let i = 0; i < 8; i++) {
-    pieces.push({
-      image: "assets/wP.png",
-      name: "white pawn",
-      y: 1,
-      x: i,
-    });
-  }
+  const [pieces, setPieces] = useState(initialSetup());
 
   // flib board function
   const flip = () => {
@@ -48,15 +21,13 @@ const Chessboard = ({ ranks, files }: Props) => {
   for (let i = 0; i < ranks.length; i++) {
     for (let j = files.length - 1; j >= 0; j--) {
       const number = i + j;
-      let image;
-      let pieceName;
+      let image, pieceName;
+      const piece = pieces[i][j];
 
-      pieces.forEach((piece) => {
-        if (piece.x === j && piece.y === i) {
-          image = piece.image;
-          pieceName = piece.name;
-        }
-      });
+      if (piece) {
+        image = piece.image;
+        pieceName = piece.name;
+      }
 
       board.push(<Tile number={number} image={image} pieceName={pieceName} />);
     }
