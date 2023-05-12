@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/board.scss";
 import Tile from "./Tile";
 
@@ -18,52 +19,64 @@ const pieces: Piece[] = [
     image: "assets/bP.png",
     name: "black pawn",
     x: 0,
-    y: 1,
+    y: 5,
   },
 ];
 
 const Chessboard = ({ ranks, files }: Props) => {
+  const [boardSide, setBoardSide] = useState(false);
+  const flip = () => {
+    setBoardSide(!boardSide);
+  };
+
   let board = [];
-  for (let j = 0; j < ranks.length; j++) {
-    for (let i = 0; i < files.length; i++) {
+  for (let j = files.length - 1; j >= 0; j--) {
+    for (let i = 0; i < ranks.length; i++) {
       const number = i + j;
       let image;
       let pieceName;
 
       pieces.forEach((piece) => {
-        if (piece.x === i && piece.y === j) {
+        if (piece.x === j && piece.y === i) {
           image = piece.image;
           pieceName = piece.name;
         }
       });
 
-      board.push(<Tile number={number} image={image} pieceName={pieceName} />);
+      board.push(
+        <Tile number={number} image={image} pieceName={pieceName} y={i} x={j} />
+      );
     }
   }
   return (
-    <div className="board-container">
-      <div className="ranks">
-        {ranks.map((rank, index) => {
-          return (
-            <span className="rank" key={index}>
-              {rank}
-            </span>
-          );
-        })}
-      </div>
-      <div className="chessboard">
-        {board}
-        <div className="files">
-          {files.map((file, index) => {
+    <>
+      <button className="btn btn-primary" onClick={flip}>
+        flip board
+      </button>
+      <div className="board-container">
+        <div className={boardSide ? "ranks reverse" : "ranks"}>
+          {ranks.map((rank, index) => {
             return (
-              <span className="file" key={index}>
-                {file}
+              <span className="rank" key={index}>
+                {rank}
               </span>
             );
           })}
         </div>
+        <div className="chessboard">
+          {board}
+          <div className={boardSide ? "files reverse" : "files"}>
+            {files.map((file, index) => {
+              return (
+                <span className="file" key={index}>
+                  {file}
+                </span>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Chessboard;

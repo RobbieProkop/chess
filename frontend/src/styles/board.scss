@@ -2,7 +2,7 @@
 
 .board-container {
   display: flex;
-  align-items: top;
+
   justify-content: center;
 
   .ranks {
@@ -13,6 +13,9 @@
     .rank {
       height: 100px;
       margin-right: 5px;
+    }
+    &.reverse {
+      flex-direction: column;
     }
   }
 
@@ -26,6 +29,10 @@
     .files {
       display: flex;
       flex-direction: row;
+
+      &.reverse {
+        flex-direction: row-reverse;
+      }
       .file {
         width: 100px;
         text-align: center;
