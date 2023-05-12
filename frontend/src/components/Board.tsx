@@ -4,9 +4,8 @@ import Tile from "./Tile";
 
 type Props = {
   files: string[];
-  ranks: number[];
+  ranks: string[];
 };
-
 interface Piece {
   image: string;
   name: string;
@@ -14,17 +13,20 @@ interface Piece {
   y: number;
 }
 
-const pieces: Piece[] = [
-  {
-    image: "assets/bP.png",
-    name: "black pawn",
-    x: 0,
-    y: 5,
-  },
-];
-
 const Chessboard = ({ ranks, files }: Props) => {
   const [boardSide, setBoardSide] = useState(false);
+
+  const pieces: Piece[] = [];
+
+  for (let i = 0; i < 8; i++) {
+    pieces.push({
+      image: "assets/bP.png",
+      name: "black pawn",
+      y: 6,
+      x: i,
+    });
+  }
+
   const flip = () => {
     setBoardSide(!boardSide);
   };
@@ -37,7 +39,7 @@ const Chessboard = ({ ranks, files }: Props) => {
       let pieceName;
 
       pieces.forEach((piece) => {
-        if (piece.x === j && piece.y === i) {
+        if (piece.x === i && piece.y === j) {
           image = piece.image;
           pieceName = piece.name;
         }
@@ -64,7 +66,7 @@ const Chessboard = ({ ranks, files }: Props) => {
           })}
         </div>
         <div className="chessboard">
-          {board}
+          {boardSide ? board : board.reverse()}
           <div className={boardSide ? "files reverse" : "files"}>
             {files.map((file, index) => {
               return (
