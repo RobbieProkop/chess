@@ -7,16 +7,23 @@
   align-items: center;
   justify-content: center;
 
-  img {
+  &.dark {
+    background: $primary-color;
+    color: #fff;
+  }
+
+  &.light {
+    background: $secondary-color;
+  }
+  .piece {
     width: 80px;
     height: 80px;
-  }
-}
-.dark {
-  background: $primary-color;
-  color: #fff;
-}
+    &:hover {
+      cursor: pointer;
+    }
 
-.light {
-  background: $secondary-color;
+    &:active {
+      cursor: grabbing;
+    }
+  }
 }

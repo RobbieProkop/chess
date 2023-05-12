@@ -16,8 +16,10 @@ interface Piece {
 const Chessboard = ({ ranks, files }: Props) => {
   const [boardSide, setBoardSide] = useState(false);
 
+  //setting the initial pieces
   const pieces: Piece[] = [];
 
+  // black pawns
   for (let i = 0; i < 8; i++) {
     pieces.push({
       image: "assets/bP.png",
@@ -27,27 +29,36 @@ const Chessboard = ({ ranks, files }: Props) => {
     });
   }
 
+  //white pawns
+  for (let i = 0; i < 8; i++) {
+    pieces.push({
+      image: "assets/wP.png",
+      name: "white pawn",
+      y: 1,
+      x: i,
+    });
+  }
+
+  // flib board function
   const flip = () => {
     setBoardSide(!boardSide);
   };
 
   let board = [];
-  for (let j = files.length - 1; j >= 0; j--) {
-    for (let i = 0; i < ranks.length; i++) {
+  for (let i = 0; i < ranks.length; i++) {
+    for (let j = files.length - 1; j >= 0; j--) {
       const number = i + j;
       let image;
       let pieceName;
 
       pieces.forEach((piece) => {
-        if (piece.x === i && piece.y === j) {
+        if (piece.x === j && piece.y === i) {
           image = piece.image;
           pieceName = piece.name;
         }
       });
 
-      board.push(
-        <Tile number={number} image={image} pieceName={pieceName} y={i} x={j} />
-      );
+      board.push(<Tile number={number} image={image} pieceName={pieceName} />);
     }
   }
   return (
