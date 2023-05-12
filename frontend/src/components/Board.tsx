@@ -29,7 +29,14 @@ const Chessboard = ({ ranks, files }: Props) => {
         pieceName = piece.name;
       }
 
-      board.push(<Tile number={number} image={image} pieceName={pieceName} />);
+      board.push(
+        <Tile
+          key={`${i}, ${j}`}
+          number={number}
+          image={image}
+          pieceName={pieceName}
+        />
+      );
     }
   }
   return (
