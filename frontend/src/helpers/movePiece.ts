@@ -1,3 +1,5 @@
+let activePiece: HTMLElement | null = null;
+
 export const grabPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
   const element = e.target as HTMLElement;
   if (!element.classList.contains("piece")) return;
@@ -10,38 +12,40 @@ export const grabPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
   element.style.left = `${x}px`;
   element.style.top = `${y}px`;
 
-  return e.target;
+  activePiece = element;
 };
 
 export const dragPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  const element = e.target as HTMLElement;
-  if (!element.classList.contains("piece")) return;
+  if (!activePiece || !activePiece.classList.contains("piece")) return;
   const x = e.clientX - 40;
   const y = e.clientY - 40;
 
-  element.style.left = `${x}px`;
-  element.style.top = `${y}px`;
+  activePiece.style.left = `${x}px`;
+  activePiece.style.top = `${y}px`;
   return e.target;
 };
 
 export const dropPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  const element = e.target as HTMLElement;
-  if (!element.classList.contains("piece")) return;
+  if (activePiece) {
+    activePiece = null;
+  }
+  // const element = e.target as HTMLElement;
+  // if (!element.classList.contains("piece")) return;
 
-  //calculate the square that the piece will  be dropped onto
-  const squareSize = 100;
-  const x = Math.floor(e.clientX / squareSize);
-  const y = Math.floor(e.clientY / squareSize);
+  // //calculate the square that the piece will  be dropped onto
+  // const squareSize = 100;
+  // const x = Math.floor(e.clientX / squareSize);
+  // const y = Math.floor(e.clientY / squareSize);
 
-  // if(isValidMove(x.y)) {
-  //   setPieces(oldPieces => {
+  // // if(isValidMove(x.y)) {
+  // //   setPieces(oldPieces => {
 
-  //   })
-  // }
+  // //   })
+  // // }
 
-  element.style.position = "relative";
-  element.style.left = "0";
-  element.style.top = "0";
+  // element.style.position = "relative";
+  // element.style.left = `${x}px`;
+  // element.style.top = `${y}px`;
 
-  return e.target;
+  // return e.target;
 };
