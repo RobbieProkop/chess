@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/board.scss";
 import Tile from "./Tile";
 import initialSetup from "../helpers/initialSetup";
-import grabPiece from "../helpers/grabPiece";
+import { grabPiece, dragPiece, dropPiece } from "../helpers/movePiece";
 
 type Props = {
   files: string[];
@@ -56,7 +56,12 @@ const Chessboard = ({ ranks, files }: Props) => {
           })}
         </div>
         <div>
-          <div className="chessboard" onMouseDown={(e) => grabPiece(e)}>
+          <div
+            className="chessboard"
+            onMouseDown={(e) => grabPiece(e)}
+            onMouseMove={(e) => dragPiece(e)}
+            onMouseUp={(e) => dropPiece(e)}
+          >
             {boardSide ? board : board.reverse()}
           </div>
           <div className={boardSide ? "files reverse" : "files"}>
