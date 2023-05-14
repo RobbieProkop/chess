@@ -1,3 +1,10 @@
+interface Piece {
+  image: string;
+  name: string;
+  x: number;
+  y: number;
+}
+
 let activePiece: HTMLElement | null = null;
 
 export const grabPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -37,10 +44,32 @@ export const dragPiece = (
   return e.target;
 };
 
-export const dropPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+export const dropPiece = (
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  setPieces: React.Dispatch<React.SetStateAction<Piece[][]>>,
+  boardRef: React.RefObject<HTMLDivElement>
+) => {
+  const chessboard = boardRef.current;
+  if (!chessboard) return;
+  const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+  const y = Math.floor(8 - (e.clientY - chessboard.offsetTop) / 100);
+
+  console.log("x,y", x, y);
   if (activePiece) {
     activePiece = null;
   }
+  setPieces((pieces) => {
+    const result = pieces.map((piece) => {
+      // console.log("piece", piece);
+      // if (piece.x === 1 && piece.y === 0) {
+      //   piece.x = x;
+      //   piece.y = y;
+      // }
+      return piece;
+    });
+    return result;
+  });
+
   // const element = e.target as HTMLElement;
   // if (!element.classList.contains("piece")) return;
 

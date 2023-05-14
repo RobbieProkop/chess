@@ -61,7 +61,7 @@ const Chessboard = ({ ranks, files }: Props) => {
             className="chessboard"
             onMouseDown={(e) => grabPiece(e)}
             onMouseMove={(e) => dragPiece(e, boardRef)}
-            onMouseUp={(e) => dropPiece(e)}
+            onMouseUp={(e) => dropPiece(e, setPieces, boardRef)}
             ref={boardRef}
           >
             {boardSide ? board : board.reverse()}
