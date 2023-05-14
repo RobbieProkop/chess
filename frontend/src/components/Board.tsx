@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../styles/board.scss";
 import Tile from "./Tile";
 import initialSetup from "../helpers/initialSetup";
@@ -10,6 +10,7 @@ type Props = {
 };
 
 const Chessboard = ({ ranks, files }: Props) => {
+  const boardRef = useRef<HTMLDivElement>(null);
   const [boardSide, setBoardSide] = useState(false);
   const [pieces, setPieces] = useState(initialSetup());
 
@@ -59,8 +60,9 @@ const Chessboard = ({ ranks, files }: Props) => {
           <div
             className="chessboard"
             onMouseDown={(e) => grabPiece(e)}
-            onMouseMove={(e) => dragPiece(e)}
+            onMouseMove={(e) => dragPiece(e, boardRef)}
             onMouseUp={(e) => dropPiece(e)}
+            ref={boardRef}
           >
             {boardSide ? board : board.reverse()}
           </div>

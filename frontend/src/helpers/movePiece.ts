@@ -15,13 +15,23 @@ export const grabPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
   activePiece = element;
 };
 
-export const dragPiece = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  if (!activePiece || !activePiece.classList.contains("piece")) return;
+export const dragPiece = (
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  boardRef: React.RefObject<HTMLDivElement>
+) => {
+  const chessboard = boardRef.current;
+  if (!chessboard || !activePiece || !activePiece.classList.contains("piece"))
+    return;
+  const minX = chessboard.offsetLeft - 20;
+  const minY = chessboard.offsetTop;
+  // // const maxX = chessboard.offsetRight;
+  // const maxY = chessboard.offsetTop;
   const x = e.clientX - 40;
   const y = e.clientY - 40;
 
-  activePiece.style.left = `${x}px`;
-  activePiece.style.top = `${y}px`;
+  activePiece.style.left = x < minX ? `${minX}px` : `${x}px`;
+  activePiece.style.top = y < minY ? `${minY}px` : `${y}px`;
+
   return e.target;
 };
 
