@@ -22,15 +22,17 @@ export const dragPiece = (
   const chessboard = boardRef.current;
   if (!chessboard || !activePiece || !activePiece.classList.contains("piece"))
     return;
-  const minX = chessboard.offsetLeft - 20;
-  const minY = chessboard.offsetTop;
-  // // const maxX = chessboard.offsetRight;
-  // const maxY = chessboard.offsetTop;
+  const minX = chessboard.offsetLeft - 15;
+  const minY = chessboard.offsetTop - 10;
+  const maxX = chessboard.offsetLeft + chessboard.clientWidth - 70;
+  const maxY = chessboard.offsetTop + chessboard.clientHeight - 70;
   const x = e.clientX - 40;
   const y = e.clientY - 40;
 
-  activePiece.style.left = x < minX ? `${minX}px` : `${x}px`;
-  activePiece.style.top = y < minY ? `${minY}px` : `${y}px`;
+  activePiece.style.left =
+    x < minX ? `${minX}px` : x > maxX ? `${maxX}px` : `${x}px`;
+  activePiece.style.top =
+    y < minY ? `${minY}px` : y > maxY ? `${maxY}px` : `${y}px`;
 
   return e.target;
 };
