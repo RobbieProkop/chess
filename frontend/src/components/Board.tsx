@@ -10,6 +10,8 @@ type Props = {
 };
 
 const Chessboard = ({ ranks, files }: Props) => {
+  const [gridX, setGridX] = useState(0);
+  const [gridY, setGridY] = useState(0);
   const boardRef = useRef<HTMLDivElement>(null);
   const [boardSide, setBoardSide] = useState(false);
   const [pieces, setPieces] = useState(initialSetup());
@@ -59,9 +61,11 @@ const Chessboard = ({ ranks, files }: Props) => {
         <div>
           <div
             className="chessboard"
-            onMouseDown={(e) => grabPiece(e)}
+            onMouseDown={(e) =>
+              grabPiece(e, setGridX, setGridY, boardRef, gridX, gridY)
+            }
             onMouseMove={(e) => dragPiece(e, boardRef)}
-            onMouseUp={(e) => dropPiece(e, setPieces, boardRef)}
+            onMouseUp={(e) => dropPiece(e, setPieces, boardRef, gridX, gridY)}
             ref={boardRef}
           >
             {boardSide ? board : board.reverse()}
